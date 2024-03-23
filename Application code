@@ -1,0 +1,160 @@
+#include <iostream>
+
+
+
+
+using namespace std;
+
+
+
+void Register_student(string& fn, string& ln, string& ssn, string& add);
+
+void Edit_student(string& fn, string& ln, string& ssn, string& add);
+
+
+class Student {
+	int id;
+	string Name;
+	string Email;
+	double Grade1, Grade2, Grade3;
+	double Gpa;
+public:
+	//get and set for all
+};
+
+class MyClass {
+	int classid;
+	int NoStudents;
+	string teacher;
+	string classtitle;
+	
+
+};
+
+
+
+int main() {
+
+	string fname;
+
+	string lname;
+
+	string SSN;
+
+	string address;
+
+
+	int choice;
+
+	do
+
+	{
+
+		cout << "Student Application Menu" << endl;
+
+
+		cout << "1. Register student" << endl;
+
+
+		cout << "2. Edit Student" << endl;
+
+
+		cout << "3. Delete Student" << endl;
+
+
+		cout << "4. Print Transcript for Student" << endl;
+
+
+		cout << "5. Add Student to Class" << endl;
+
+
+		cout << "6. Remove Student From Class" << endl;
+
+
+		cout << "7. Modify Class" << endl;
+
+
+		cout << "8. Remove Class" << endl;
+
+
+		cout << "9. Exit" << endl;
+
+
+		cout << "Enter your Choice: ";
+
+
+		cin >> choice;
+
+
+
+
+		switch (choice) {
+
+		case 1:
+
+			Register_student(fname, lname, SSN, address);
+
+
+			break;
+
+
+		case 2:
+
+			Edit_student(fname, lname, SSN, address);
+
+
+			break;
+
+
+		}
+
+
+
+	} while ((choice > 0) && (choice < 9));
+
+
+}
+
+
+
+void Register_student(string& fn, string& ln, string& ssn, string& add) {
+
+	cout << " Enter your first name :" << endl;
+
+	cin >> fn;
+
+	cout << "Enter your last name :" << endl;
+
+	cin >> ln;
+
+	cout << "Enter your Social Security Number :" << endl;
+
+	cin >> ssn;
+
+	cout << "Enter your home address :" << endl;
+
+	cin >> add;
+
+	cout << endl;
+
+}
+
+
+void Edit_student(string& fn, string& ln, string& ssn, string& add) {
+
+	cout << endl;
+
+	cout << " Edit student info " << endl;
+
+	cout << " student's first name :" << fn << endl;
+
+	cout << "student's last name :" << ln << endl;
+
+	cout << "student's social security number :" << ssn << endl;
+
+	cout << "student's home address :" << add << endl;
+
+
+	cout << endl;
+
+}
