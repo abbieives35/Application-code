@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+class person {
+
+      int Id;
+      string Name;
+      double      Grade1, Grade2;
+
+public:
+      void set_ID(int id) {
+            Id = id;
+      }
+      int get_ID() {
+            return Id;
+      }
+      void set_name(string name) {
+            Name = name;
+      }
+      string get_name() {
+            return Name;
+      }
+      void set_grade1(double grade1) {
+            Grade1 = grade1;
+            }
+      double get_grade1() {
+            return Grade1;
+      }
+      void set_grade2(double grade2) {
+            Grade2 = grade2;
+      }
+      double get_grade2() {
+            return Grade2;
+
+      }
+      void print_transcript()
+      {
+            cout << "This is the student's transcript: " << endl;
+            cout << "Id: " << Id << " Name: " << Name << " Grade 1: " << Grade1 << " Grade 2: " << Grade2 << endl;
+
+      }
+};
+int main()
+{
+      person p;
+      int myid;
+      string myname;
+      double grade1, grade2;
+      cout << "Enter student ID" << endl;
+      cin >> myid;
+      p.set_ID(myid);
+      cout << "Enter student name" << endl;
+      cin >> myname;
+      p.set_name(myname);
+      //cout << "your data  " << p.get_ID() << "  "<<  p.get_name() << endl;
+      cout << "Enter student's first grade" << endl;
+      cin >> grade1;
+      p.set_grade1(grade1);
+      cout << "Enter student's second grade" << endl;
+      cin >> grade2;
+      p.set_grade2(grade2);
+      //cout << "Student's two grade are " << p.get_grade1() << " and " << p.get_grade2() << endl;
+      p.print_transcript();
+
+            return 0;
+}
+
