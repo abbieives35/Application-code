@@ -1,0 +1,75 @@
+//3 arrays of float values needed
+
+//Use bubble sort to sort the three arrays
+
+//Use search function to find an input value in any of the arrays, the return will be which array the value was found in, if the value cannot be found return -1
+#include <iostream>
+using namespace std;
+
+void bubbleSort(float arr[], int size) {
+    for (int pass = 0; pass < size - 1; ++pass) {
+        for (int index = 0; index < size - pass - 1; ++index) {
+            if (arr[index] > arr[index + 1]) {
+                // Swap arr[index] and arr[index + 1]
+                float temp = arr[index];
+                arr[index] = arr[index + 1];
+                arr[index + 1] = temp;
+            }
+        }
+    }
+}
+
+int search(float arr[], int size, float value) {
+    for (int index = 0; index < size; ++index) {
+        if (arr[index] == value) {
+            return index; // Return the index if the value is found
+        }
+    }
+    return -1; // Return -1 if the value is not found
+}
+
+int main(){
+    float value;
+    char ans;
+    
+    float myarray[7] = {45.5, 8.3, 38.7, 1.0, 6.6, 2.4, 13.1};
+    float myarray2[4] = {90.6, 76.2, 102.9, 3.5};
+    float myarray3[12] = {7.1, 28.7, 93.9, 2.4, 5.7, 83.2, 27.3, 1.8, 73.0, 4.4, 77.8, 32.3};
+    
+    
+    bubbleSort(myarray, 7);
+    bubbleSort(myarray2, 4);
+    bubbleSort(myarray3, 12);
+    
+   
+    do{
+        cout<< "Do you want to search for a number? Enter 'Y' or 'y' for yes or press any other key to exit" << endl;
+        cin >> ans;
+        if((ans != 'Y')&&(ans != 'y')){
+            break;
+        }
+        cout << "Enter the value you are looking for: ";
+        cin >> value;
+   
+    int index1 = search(myarray, 7, value);
+    int index2 = search(myarray2, 4, value);
+    int index3 = search(myarray3, 12, value);
+   
+    if(index1 != -1) {
+        cout << "Value found in myarray at index: " << index1 << endl;
+    } else {
+        cout << "Value not found in myarray" << endl;
+    }
+    if(index2 != -1) {
+        cout << "Value found in myarray2 at index: " << index2 << endl;
+    } else {
+        cout << "Value not found in myarray2" << endl;
+    }
+    if(index3 != -1) {
+        cout << "Value found in myarray3 at index: " << index3 << endl;
+    } else {
+        cout << "Value not found in myarray3" << endl;
+    }} while ((ans == 'Y')||(ans == 'y'));
+    
+    return 0;
+}
