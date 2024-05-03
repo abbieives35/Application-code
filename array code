@@ -1,0 +1,58 @@
+//WRITE A COMPLETE PROGRAM TO INPUT UP TO A MAXIMUM
+            //OF 25 CHARACTERS INTO AN ARRAY. THE PROGRAM IS TO USE A PROCEDURE
+            //TO REVERSE THE CHARACTERS IN THE ARRAY AND ALSO TO COUNT THE NO.
+            //OF VOWELS IN THE ARRAY.
+#include <iostream>
+using namespace std;
+int const MAXIMUM = 4;
+
+
+
+void getinput(char letters[],int const MAXIMUM, int& actualsize){
+    
+    actualsize = 0;
+    for(int i=0; i < MAXIMUM; i++){
+        cout << "Enter a letter." << endl;
+        cin >> letters[i];
+        actualsize++;
+        }
+        cout << "The letters in the array are: " << endl;
+        for(int i = 0; i < MAXIMUM ; i++){
+            cout << letters[i] << endl;
+        }
+        }
+void reverseletters(char letters[],int const MAXIMUM, int& actualsize ){
+    for(int i=0; i < (MAXIMUM/2); i++){
+        char temp = letters[i];
+        letters[i] = letters[actualsize-i-1];
+        letters[actualsize-i-1] = temp;
+        }
+        cout << "The letters in reverse order is: " << endl;
+        for(int i = 0; i < MAXIMUM; i++){
+            cout << letters[i] << endl;
+        }
+    }
+    void countvowels( char letters[], int const MAXIMUM){
+        int count = 0;
+        for(int i =0; i < MAXIMUM; i++){
+            if((letters[i]== 'A') || (letters[i]== 'a')|| (letters[i]=='E')||(letters[i]=='e') || (letters[i]== 'O')||(letters[i]=='o') ||(letters[i]=='I')||(letters[i]=='i')||(letters[i]=='U')||(letters[i]== 'u') ){
+                count++;
+            }
+            }
+            cout << "The number of vowels in the array are: " << endl;
+            cout << count << endl;
+    }
+    
+    
+    
+    int main(){
+       int actualsize;
+       char letters[MAXIMUM];
+   
+    
+       getinput(letters, 4, actualsize);
+       reverseletters(letters, 4, actualsize);
+       countvowels(letters, 4);
+    
+  return 0;
+    }
