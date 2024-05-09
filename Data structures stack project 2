@@ -1,0 +1,88 @@
+// In a container of candies there are 5 colors randomly placed: red, yellow, green, black and blue. Assume that the container holds a maximum of 25 candies. Use a stackprogram to simulate randomly placing some (between 10 and 25 candies) initially into the container (stack). this is interactive Now once that is done have the "user" choose a color and using ONLY stackfunctions remove all candies of that color. All candies in the container (stack) that areNOT of that color are returned to the candy in the same order they were in prior tothe color removal. Actually loop the program twice to simulate "filling" and"removing" two sets of candies. Don't assume that there are necessarily all colors ofcandy all the time...so for example someone might want all red candies but theremight not be any red candies at that time.Fill the container (or partially fill) only ONCE for each run. 
+//Maxstack=25
+//Random initial placement of 10-25 candies into the stack based on colors, colors are red, yellow, green, black and blue
+//have user choose a color
+//use a stackfunction to remove all candies that are the color that the user chose
+//All candies that are not of that color are returned to candy stack in the same order they were in prior to the user color removal
+//Loop the program twice to simulate filling and removing two sets of candies 
+
+
+#include <iostream>
+#include <cstdlib>
+#include <stack>
+#include <ctime>
+using namespace std;
+
+enum CandyColor {Red, Yellow, Green, Black, Blue};
+//First filling the stack with 10-25 of the five different candies using the srand and rand functions in cstlib to generate randomness in placement
+void fillStack(stack<CandyColor>& container) {
+    srand(time(nullptr));//setting seed
+    int numCandies = rand() % 16 + 10;  // Random number between 10 and 25 which will be number of candies in the container
+    for (int i = 0; i < numCandies; ++i) {
+        CandyColor color = static_cast<CandyColor>(rand() % 5);//random number between 0 and 4 to randomly choose from the enum
+        container.push(color);//adding the random color to the container
+        }
+        cout << "Container is filled with " << numCandies << "  candies" << endl;
+}
+//Funtion to remove a color from the container and refill the container with all of the colors besides the chosen color
+void removeColor(stack<CandyColor>& container, CandyColor choice) {
+    stack<CandyColor> tempStack;
+    
+    while (!container.empty()) {
+        CandyColor currentColor = container.top();
+        container.pop();
+
+        if (currentColor == choice) {
+            // Candy matches the chosen color, do not add to tempStack
+        } else {
+            // Candy does not match the chosen color, add to tempStack
+            tempStack.push(currentColor);
+        }
+    }
+
+    // Push back candies from tempStack to container in their original order
+    while (!tempStack.empty()) {
+        container.push(tempStack.top());
+        tempStack.pop();
+    }
+}
+
+int main() {
+    stack<CandyColor> container;
+    
+    for (int i = 0; i < 2; ++i) {
+        fillStack(container);
+
+        int choice;
+        cout << "Choose a color to remove (0=Red, 1=Yellow, 2=Green, 3=Black, 4=Blue): ";
+        cin >> choice;
+//Changing choice from type int to type CandyColor
+        removeColor(container, static_cast<CandyColor>(choice));
+
+        // Output the remaining candies in the container
+        cout << "Remaining candies after your choice has been removed "<< endl;
+        while (!container.empty()) {
+            switch(container.top()) {
+                case Red:
+                    cout << "Red ";
+                    break;
+                case Yellow:
+                    cout << "Yellow ";
+                    break;
+                case Green:
+                    cout << "Green ";
+                    break;
+                case Black:
+                    cout << "Black ";
+                    break;
+                case Blue:
+                    cout << "Blue ";
+                    break;
+            }
+            container.pop();
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
