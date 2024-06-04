@@ -1,0 +1,317 @@
+#include <iostream>
+#include <queue>
+#include <sstream>
+#include <string>
+using namespace std;
+
+const int capacity = 5;//capacity for each garage/street
+queue<string>Knockemdead;//First garage
+queue<string>Bashemup;//Second garage
+queue<string>street;
+
+//function for arrivals, using if conditions for each available spot
+void arrival(){
+    if (Knockemdead.empty()){
+        string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        Knockemdead.push(plate);
+        cout << "Your car is parked in Knockemdead Garage spot 1. Remember what spot you're in so you can tell us when you pick your car up." << endl;
+    } else if(Knockemdead.size() == 1){
+        string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+       Knockemdead.push(plate);
+        cout << "Your car is parked in Knockemdead Garage spot 2 remember what spot your'e in so you can tell us when you pick your car up." << endl;
+    }else if(Knockemdead.size() == 2){
+        string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        Knockemdead.push(plate);
+        cout << "Your car is parked in Knockemdead Garage spot 3 remember what spot youre in so you can tell us when you pick your car up." << endl;
+    } else if (Knockemdead.size() == 3){
+        string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        Knockemdead.push(plate);
+        cout << "Your car is parked in Knockemdead Garage spot 4 remember what spot youre in so you can tell us when you pick your car up." << endl;
+    } else if (Knockemdead.size() == 4){
+            string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        Knockemdead.push(plate);
+        cout << "Your car is parked in spot 5 remember what spot youre in so you can tell us when you pick your car up." << endl;
+    }else if ((Knockemdead.size() == capacity) && (Bashemup.empty())){
+        string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        Bashemup.push(plate);
+        cout << "Your car is parked in Bashemup Garage and your spot number is 6. Remember your spot number so you can tell us when you your car up." << endl;
+    }else if ((Knockemdead.size() == capacity) && (Bashemup.size()== 1)){
+             string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        Bashemup.push(plate);
+        cout << "Your car is parked in Bashemup Garage and your spot number is 7. Remember your spot number so you can tell us when you pick your car up." << endl;
+    }else if ((Knockemdead.size() == capacity) && (Bashemup.size()== 2)){
+              string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        Bashemup.push(plate);
+        cout << "Your car is parked in Bashemup Garage and your spot number is 8. Remember your spot number so you can tell us when you pick your car up" << endl;
+    }else if ((Knockemdead.size() == capacity) && (Bashemup.size()== 3)){
+              string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        Bashemup.push(plate);
+        cout << "Your car is in Bashemup Garage and your spot number is 9. Remember your spot number so you can tell us when you pick your car up" << endl;
+              
+  } else if ((Knockemdead.size() == capacity) && (Bashemup.size()== 4)){
+            string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        Bashemup.push(plate);
+        cout << "Your car is parked in Bashemup Garage and your spot number is 10. Remember your spot number so you can tell us when you pick your car up" << endl;
+    }else if ((Knockemdead.size() == capacity) && (Bashemup.size()== capacity) && (street.empty())){
+            string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        street.push(plate);
+        cout << "Your can can wait in the street until a spot opens up in one of our garages." << endl;
+   }else if ((Knockemdead.size() == capacity) && (Bashemup.size()== capacity) && (street.size()== 1)){
+             string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        street.push(plate);
+        cout << "Your car can wait in the street until a spot opens up in one of our garages." << endl;
+    }else if ((Knockemdead.size() == capacity) && (Bashemup.size()== capacity) && (street.size()== 2)){
+              string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        street.push(plate);
+        cout << "Your car can wait in the street until a spot opens up in one of our garages." << endl;
+    }else if ((Knockemdead.size() == capacity) && (Bashemup.size()== capacity) && (street.size()== 3)){
+              string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        street.push(plate);
+        cout << "Your car can wait in the street until a spot opens up in one of our garages." << endl;
+    }else if ((Knockemdead.size() == capacity) && (Bashemup.size()== capacity) && (street.size()== 4)){
+              string plate;
+        cout << "Enter your license plate" << endl;
+        cin >> plate;
+        street.push(plate);
+        cout << "Your car can wait in the street." << endl;
+ }else {
+        cout << "There is no room anywhere. Go to Boston." << endl;
+    }
+    
+cout << "Knockemdead Garage currentlty has: " << Knockemdead.size() << "  cars." << endl;
+cout << "Bashemup Garage currentlty has: " << Bashemup.size() << "  cars." << endl;
+cout << "The street currently has: " << street.size() << "  cars waiting" << endl;
+}
+//Function for departures uses the spot number to empty the queue and refill it based on input
+void departure(){
+    queue<string>temp;
+    int answer;
+    cout << "What spot is your car in?" << endl;
+    cin >> answer;
+    if(answer == 1){
+        Knockemdead.pop();
+        cout << "Your fee is 10$." << endl;
+        cout << "Car departed from Knockemdead Garage" << endl;
+        //Sending waiting car from street into the next open garage spot
+        if(!street.empty()){
+        Knockemdead.push(street.front());
+        street.pop();
+        cout << "Car departed from the street into Knockemdead Garage" << endl;
+        }
+    }
+    else if(answer == 2){
+        temp.push(Knockemdead.front());
+        Knockemdead.pop();
+        Knockemdead.pop();
+        cout << "Your fee is 20$" << endl;
+        cout << "Car departed from Knockemdead garage" << endl;
+        Knockemdead.push(temp.front());
+        temp.pop();
+        if(!street.empty()){
+        Knockemdead.push(street.front());
+        street.pop();
+        cout << "Car departed from the street into Knockemdead" << endl;
+        }
+        }
+    else if(answer == 3){
+        for(int i = 0; i < 2; i++){
+            temp.push(Knockemdead.front());
+            Knockemdead.pop();
+            }
+             Knockemdead.pop();
+             cout << "Your fee is 25$" << endl;
+              cout << "Car departed from Knockemdead" << endl;
+             for(int i = 0; i < 2; i++){
+            Knockemdead.push(temp.front());
+             temp.pop();
+             }
+             if(!street.empty()){
+        Knockemdead.push(street.front());
+        street.pop();
+        cout << "Car departed from the street into Knockemdead Garage" << endl;
+        }
+    }
+    else if(answer == 4){
+        for(int i = 0; i < 3; i++){
+            queue<string>temp;
+            temp.push(Knockemdead.front());
+            Knockemdead.pop();
+            }
+             Knockemdead.pop();
+             cout << "Your fee is 25$" << endl;
+              cout << "Car departed from Knockemdead Garage" << endl;
+             for(int i = 0; i < 3; i++){
+             Knockemdead.push(temp.front());
+             temp.pop();
+             }
+             if(!street.empty()){
+       Knockemdead.push(street.front());
+        street.pop();
+         cout << "Car departed from the street into garage1" << endl;
+        }
+   }
+   else if(answer == 5){
+        for(int i = 0; i < 4; i++){
+            queue<string>temp;
+            temp.push(Knockemdead.front());
+            Knockemdead.pop();
+            }
+             Knockemdead.pop();
+             cout << "Your fee is 25$" << endl;
+              cout << "Car departed from garage1" << endl;
+             for(int i = 0; i < 4; i++){
+             Knockemdead.push(temp.front());
+             temp.pop();
+             }
+             if(!street.empty()){
+        Knockemdead.push(street.front());
+        street.pop();
+        cout << "Car departed from the street into Knockemdead Garage" << endl;
+        }
+    }
+    else if(answer == 6){
+        
+             Bashemup.pop();
+             cout << "Your fee is 10$" << endl;
+             cout << "Car departed from Bashemup" << endl;
+              if(!street.empty()){
+        Bashemup.push(street.front());
+        street.pop();
+        cout << "Car departed from the street into Bashemup Garage" << endl;
+        }
+    }
+    else if(answer == 7){
+            temp.push(Bashemup.front());
+            Bashemup.pop();
+            Bashemup.pop();
+             cout << "Your fee is 20$" << endl;
+             cout << "Car departed from Bashemup Garage" << endl;
+            
+             Bashemup.push(temp.front());
+             temp.pop();
+             
+             if(!street.empty()){
+        Bashemup.push(street.front());
+        street.pop();
+        cout << "Car departed from the street into Bashemup Garage" << endl;
+        }
+}
+    
+    else if(answer == 8){
+        for(int i = 0; i < 2; i++){
+            temp.push(Bashemup.front());
+            Bashemup.pop();
+            }
+             Bashemup.pop();
+             cout << "Your fee is 25$" << endl;
+             cout << "Car departed from Bashemup Garage" << endl;
+             for(int i = 0; i < 2; i++){
+             Bashemup.push(temp.front());
+             temp.pop();
+             }
+             if(!street.empty()){
+        Bashemup.push(street.front());
+        street.pop();
+        cout << "Car departed from the street into Bashemup Garage" << endl;
+        }
+        
+    }
+    else if(answer == 9){
+        for(int i = 0; i < 3; i++){
+            temp.push(Bashemup.front());
+            Bashemup.pop();
+            }
+            Bashemup.pop();
+             cout << "Your fee is 25$" << endl;
+             cout << "Car departed from Bashemup Garage" << endl;
+             for(int i = 0; i < 3; i++){
+             Bashemup.push(temp.front());
+             temp.pop();
+             }
+    if(!street.empty()){
+        Bashemup.push(street.front());
+        street.pop();
+         cout << "Car departed from the street into Bashemup" << endl;
+        }
+    }
+    else if(answer == 10){
+        for(int i = 0; i < 4; i++){
+            temp.push(Bashemup.front());
+            Bashemup.pop();
+            }
+             Bashemup.pop();
+             cout << "Your fee is 25$" << endl;
+             cout << "Car departed from Bashemup Garage" << endl;
+             for(int i = 0; i < 4; i++){
+             Bashemup.push(temp.front());
+             temp.pop();}
+              if(!street.empty()){
+               Bashemup.push(street.front());
+               street.pop();
+            cout << "Car departed from the street into Bashemup Garage" << endl;
+        }
+    }
+    
+    else{
+        cout << "Your car was not found." << endl;
+    }
+
+cout << "Knockemdead Garage currentlty has: " << Knockemdead.size() << "cars." << endl;
+cout << "Bashemup Garage currentlty has: " << Bashemup.size() << "cars." << endl;
+cout << "The street currently has: " << street.size() << "cars waiting" << endl;
+    }
+    
+    
+
+int main(){
+queue<string>Knockemdead;
+queue<string>Bashemup;
+queue<string>street;
+char answer;
+
+do {
+    cout << "Welcome to New York City Parking. Are you here to park or pick up your car? Type in 'a' for arrivals and 'd' for departures." << endl;
+cin >> answer;
+if (answer == 'a'){
+     arrival();
+}
+else if (answer == 'd'){
+    departure();
+}
+else {
+    cout << "invalid entry" << endl;
+}
+
+
+}
+while ((answer == 'a') || (answer == 'd'));
+  return 0;  
+} 
