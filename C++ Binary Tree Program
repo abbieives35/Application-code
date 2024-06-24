@@ -1,0 +1,291 @@
+#include <iostream>
+
+#include <string>
+
+#include <algorithm> 
+
+#include <climits>
+
+using namespace std;
+
+
+
+struct Node {
+
+  string data;
+
+  Node* left;
+
+  Node* right;
+
+};
+
+
+
+Node* CreateNode(string data) {
+
+  Node* newNode = new Node();
+
+  newNode->data = data;
+
+  newNode->left = newNode->right = nullptr;
+
+  return newNode;
+
+}
+
+
+
+Node* InsertNode(Node* root, string data) {
+
+  if (root == nullptr) {
+
+    root = CreateNode(data);
+
+  } else if (data < root->data) {
+
+    root->left = InsertNode(root->left, data);
+
+  } else {
+
+    root->right = InsertNode(root->right, data);
+
+  }
+
+   
+
+  return root;
+
+}
+
+
+
+void InOrderTraversal(Node* root, int level) {
+
+  if (root != nullptr) {
+
+    InOrderTraversal(root->left, level + 1);
+
+    cout << root->data << " (Level " << level << ")" << endl;
+
+    InOrderTraversal(root->right, level + 1);
+
+  }
+
+}
+
+
+
+void PreOrderTraversal(Node* root, int level) {
+
+  if (root != nullptr) {
+
+    cout << root->data << " (Level " << level << ")" << endl;
+
+    PreOrderTraversal(root->left, level + 1);
+
+    PreOrderTraversal(root->right, level + 1);
+
+  }
+
+}
+
+
+
+void PostOrderTraversal(Node* root, int level) {
+
+  if (root != nullptr) {
+
+    PostOrderTraversal(root->left, level + 1);
+
+    PostOrderTraversal(root->right, level + 1);
+
+    cout << root->data << " (Level " << level << ")" << endl;
+
+  }
+
+}
+
+
+
+int CountLeaves(Node* root) {
+
+  if (root == nullptr) return 0;
+
+  if (root->left == nullptr && root->right == nullptr) return 1;
+
+  return CountLeaves(root->left) + CountLeaves(root->right);
+
+}
+
+
+
+int CountOneChildNodes(Node* root) {
+
+  if (root == nullptr) return 0;
+
+  int count = 0;
+
+  if ((root->left == nullptr && root->right != nullptr) || (root->left != nullptr && root->right == nullptr)) {
+
+    count = 1;
+
+  }
+
+  return count + CountOneChildNodes(root->left) + CountOneChildNodes(root->right);
+
+}
+
+
+
+int CountTwoChildNodes(Node* root) {
+
+  if (root == nullptr) return 0;
+
+  int count = 0;
+
+  if (root->left != nullptr && root->right != nullptr) {
+
+    count = 1;
+
+  }
+
+  return count + CountTwoChildNodes(root->left) + CountTwoChildNodes(root->right);
+
+}
+
+
+
+void FindLeafLevels(Node* root, int level, int& minLevel, int& maxLevel) {
+
+  if (root == nullptr) return;
+
+  if (root->left == nullptr && root->right == nullptr) {
+
+    if (level < minLevel) minLevel = level;
+
+    if (level > maxLevel) maxLevel = level;
+
+  }
+
+  FindLeafLevels(root->left, level + 1, minLevel, maxLevel);
+
+  FindLeafLevels(root->right, level + 1, minLevel, maxLevel);
+
+}
+
+
+
+int Height(Node* root) {
+
+  if (root == nullptr) return -1; // Height of an empty tree is -1
+
+
+
+  int leftHeight = Height(root->left);
+
+  int rightHeight = Height(root->right);
+
+
+
+  return 1 + max(leftHeight, rightHeight);
+
+}
+
+
+
+bool IsBalanced(Node* root) {
+
+  if (root == nullptr) return true;
+
+  int leftHeight = Height(root->left);
+
+  int rightHeight = Height(root->right);
+
+  return abs(leftHeight - rightHeight) <= 1 && IsBalanced(root->left) && IsBalanced(root->right);
+
+}
+
+
+
+int main() {
+
+  Node* root = nullptr;
+
+
+
+  cout << "Enter ten strings to insert into the binary tree:" << endl;
+
+  for (int i = 0; i < 10; ++i) {
+
+    string input;
+
+    cin >> input;
+
+    root = InsertNode(root, input);
+
+  }
+
+
+
+  cout << "In-order traversal of the binary tree:" << endl;
+
+  InOrderTraversal(root, 0);
+
+  cout << endl;
+
+   
+
+  cout << "Pre-order traversal of the binary tree:" << endl;
+
+  PreOrderTraversal(root, 0);
+
+  cout << endl;
+
+   
+
+  cout << "Post-order traversal of the binary tree:" << endl;
+
+  PostOrderTraversal(root, 0);
+
+  cout << endl;
+
+
+
+  cout << "Number of leaves: " << CountLeaves(root) << endl;
+
+  cout << "Number of nodes with only one child: " << CountOneChildNodes(root) << endl;
+
+  cout << "Number of nodes with two children: " << CountTwoChildNodes(root) << endl;
+
+
+
+  int minLevel = INT_MAX, maxLevel = INT_MIN;
+
+  FindLeafLevels(root, 0, minLevel, maxLevel);
+
+  cout << "Minimum leaf level: " << minLevel << endl;
+
+  cout << "Maximum leaf level: " << maxLevel << endl;
+
+
+
+  cout << "Height of the tree: " << Height(root) << endl;
+
+
+
+  if (IsBalanced(root)) {
+
+    cout << "The tree is balanced." << endl;
+
+  } else {
+
+    cout << "The tree is not balanced." << endl;
+
+  }
+
+
+
+  return 0;
+
+}
