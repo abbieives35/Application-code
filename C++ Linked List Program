@@ -1,0 +1,213 @@
+#include <iostream>
+
+#include <string>
+
+using namespace std;
+
+
+
+// Declaration of the node_type class
+
+class node_type {
+
+public:
+
+  string word;
+
+  node_type* next;
+
+
+
+  // Constructor using initializer list
+
+  node_type(string w) : word(w), next(nullptr) {}
+
+};
+
+
+
+// Function to insert a node in sorted order
+
+void InsertNodeSorted(node_type*& first, string word) {
+
+  node_type* newNode = new node_type(word);
+
+
+
+  // Case 1: The list is empty or the new node should be the new first
+
+  if (first == nullptr || first->word >= word) {
+
+    newNode->next = first;
+
+    first = newNode;
+
+  } else {
+
+    // Case 2: Find the correct position to insert the new node
+
+    node_type* current = first;
+
+    while (current->next != nullptr && current->next->word < word) {
+
+      current = current->next;
+
+    }
+
+    newNode->next = current->next;
+
+    current->next = newNode;
+
+  }
+
+}
+
+
+
+// Function to reverse the linked list
+
+node_type* ReverseList(node_type* first) {
+
+  node_type* prev = nullptr;
+
+  node_type* current = first;
+
+  node_type* next = nullptr;
+
+
+
+  while (current != nullptr) {
+
+    next = current->next; // Store next node 
+
+    current->next = prev; // Reverse current node's pointer
+
+    prev = current;    // Move pointers one position ahead
+
+    current = next;
+
+  }
+
+  first = prev;
+
+  return first;
+
+}
+
+
+
+// Function to delete the last node
+
+node_type* DeleteLastNode(node_type* first) {
+
+  if (first == nullptr) {
+
+    return nullptr; // List is empty
+
+  }
+
+  if (first->next == nullptr) {
+
+    delete first; // Only one element in the list
+
+    return nullptr;
+
+  }
+
+  node_type* current = first;
+
+  while (current->next->next != nullptr) {
+
+    current = current->next; // Traverse to the second last node
+
+  }
+
+  delete current->next; // Delete the last node
+
+  current->next = nullptr; // Set the second last node's next to nullptr
+
+  return first;
+
+}
+
+
+
+// Function to print the linked list
+
+void PrintList(node_type* first) {
+
+  node_type* current = first;
+
+  while (current != nullptr) {
+
+    cout << current->word << " -> ";
+
+    current = current->next;
+
+  }
+
+  cout << "nullptr" << endl;
+
+}
+
+
+
+// Main function to build the linked list
+
+int main() {
+
+  node_type* first = nullptr;
+
+  string input;
+
+  int numStrings;
+
+
+
+  cout << "Enter the number of strings to insert into the linked list: ";
+
+  cin >> numStrings;
+
+
+
+  cout << "Enter the strings:" << endl;
+
+  for (int i = 0; i < numStrings; ++i) {
+
+    cin >> input;
+
+    InsertNodeSorted(first, input);
+
+  }
+
+
+
+  cout << "Sorted linked list:" << endl;
+
+  PrintList(first);
+
+
+
+  // Reverse the list
+
+  first = ReverseList(first);
+
+  cout << "Reversed linked list:" << endl;
+
+  PrintList(first);
+
+
+
+  // Delete the last node
+
+  first = DeleteLastNode(first);
+
+  cout << "Linked list after deleting the last node:" << endl;
+
+  PrintList(first);
+
+
+
+  return 0;
+
+}
