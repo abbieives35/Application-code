@@ -1,0 +1,8 @@
+SELECT 
+    a.ArenaID, 
+    a.ArenaName, 
+    a.HomeTeamID, 
+    t.TeamName AS HomeTeamName,  -- Get TeamName from Teams table
+    a.Capacity
+FROM Arena a
+JOIN Teams t ON a.HomeTeamID = t.TeamID;  -- Join Arena's HomeTeamID with Teams' TeamID
