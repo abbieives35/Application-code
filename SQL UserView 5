@@ -1,0 +1,10 @@
+-- This query will generate the data for User View 5: Sponsors View
+SELECT 
+    s.SponsorID, 
+    s.SponsorName, 
+    s.TeamID, 
+    s.FinancialCommitment, 
+    s.Contact, 
+    t.TeamName  -- Get TeamName from Teams table
+FROM Sponsors s
+JOIN Teams t ON s.TeamID = t.TeamID;  -- Join Sponsors' TeamID with Teams' TeamID
