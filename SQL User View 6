@@ -1,0 +1,4 @@
+-- This query will generate the data for User View 6: Team Details View
+SELECT TeamID, TeamName, ArenaID, Mascot, Record
+FROM Teams
+JOIN Arenas ON Teams.ArenaID = Arenas.ArenaID;
