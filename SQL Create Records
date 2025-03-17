@@ -1,0 +1,77 @@
+-- Inserting records for Players Table
+INSERT INTO Players (PlayerID, Name, Position, TeamID, TeamName, Goals, Assists, Salary) VALUES
+(1, 'John Smith', 'Center', 1, 'Maple Leafs', 30, 25, 1500000),
+(2, 'Shane Doe', 'Goalie', 2, 'Bruins', 0, 0, 3000000),
+(3, 'Mike Johnson', 'Defense', 3, 'Lightning', 10, 15, 900000),
+(4, 'Eddie Brown', 'Right Wing', 1, 'Maple Leafs', 25, 30, 1200000),
+(5, 'Jack Davis', 'Goalie', 3, 'Lightning', 0, 0, 2500000),
+(6, 'Tom Wilson', 'Left Wing', 2, 'Bruins', 20, 18, 1800000),
+(7, 'Alex Peters', 'Center', 3, 'Lightning', 35, 22, 4000000),
+(8, 'Mark Carter', 'Right Wing', 1, 'Maple Leafs', 40, 35, 3200000),
+(9, 'Luke Harper', 'Defense', 2, 'Bruins', 5, 10, 1100000),
+(10, 'Ryan Wilson', 'Left Wing', 1, 'Maple Leafs', 28, 27, 2700000);
+
+-- Inserting records for Game Schedule Table
+INSERT INTO GameSchedule (GameID, Date, AwayTeamName, ArenaID, HomeTeamName, WinningTeam) VALUES
+(201, '2024-10-01', 'Toronto Maple Leafs', 'A001', 'Seattle Kraken', 'Toronto Maple Leafs'),
+(202, '2024-10-05', 'Boston Bruins', 'A002', 'New York Rangers', 'New York Rangers'),
+(203, '2024-10-10', 'Tampa Bay Lightning', 'A003', 'Panthers', 'Tampa Bay Lightning'),
+(204, '2024-10-12', 'Calgary Flames', 'A004', 'Maple Leafs', 'Calgary Flames'),
+(205, '2024-10-15', 'Vegas Golden Knights', 'A005', 'Bruins', 'Vegas Golden Knights'),
+(206, '2024-10-18', 'Chicago Blackhawks', 'A006', 'Colorado Avalanche', 'Colorado Avalanche'),
+(207, '2024-10-20', 'Winnipeg Jets', 'A007', 'Edmonton Oilers', 'Edmonton Oilers'),
+(208, '2024-10-22', 'Detroit Red Wings', 'A008', 'Boston Bruins', 'Detroit Red Wings'),
+(209, '2024-10-25', 'Seattle Kraken', 'A009', 'Vancouver Canucks', 'Seattle Kraken'),
+(210, '2024-10-28', 'Washington Capitals', 'A010', 'Pittsburgh Penguins', 'Washington Capitals');
+
+-- Inserting records for Coaching Staff Table
+INSERT INTO Coaches (CoachID, Name, Role, TeamID, TeamName, HireDate) VALUES
+(101, 'Alex Brown', 'Head Coach', 1, 'Maple Leafs', '2022-01-05'),
+(102, 'Sarah White', 'Assistant Coach', 2, 'Bruins', '2021-06-12'),
+(103, 'Tom Wilson', 'Goalie Coach', 3, 'Lightning', '2020-03-15'),
+(104, 'Chris Green', 'Head Coach', 3, 'Lightning', '2023-05-10'),
+(105, 'Emma Black', 'Offensive Coach', 1, 'Maple Leafs', '2019-07-22'),
+(106, 'Jack Carter', 'Defensive Coach', 2, 'Bruins', '2023-02-18'),
+(107, 'Mia Evans', 'Powerplay Coach', 3, 'Lightning', '2021-11-01'),
+(108, 'Noah Adams', 'Head Coach', 4, 'Panthers', '2022-09-14'),
+(109, 'Grace Miller', 'Fitness Coach', 1, 'Maple Leafs', '2020-08-03'),
+(110, 'Liam Scott', 'Assistant Coach', 2, 'Bruins', '2023-10-25');
+
+-- Inserting records for Arena Table
+INSERT INTO Arena (ArenaID, ArenaName, HomeTeamID, HomeTeamName, Capacity) VALUES
+('A001', 'Scotiabank Arena', 1, 'Maple Leafs', 19800),
+('A002', 'TD Garden', 2, 'Bruins', 17565),
+('A003', 'Amalie Arena', 3, 'Lightning', 20500),
+('A004', 'Saddledome', 4, 'Calgary Flames', 19289),
+('A005', 'Ball Arena', 5, 'Colorado Avalanche', 18007),
+('A006', 'United Center', 6, 'Chicago Blackhawks', 19717),
+('A007', 'Rogers Place', 7, 'Edmonton Oilers', 18347),
+('A008', 'Little Caesars Arena', 8, 'Detroit Red Wings', 19515),
+('A009', 'Climate Pledge Arena', 9, 'Seattle Kraken', 17151),
+('A010', 'PPG Paints Arena', 10, 'Pittsburgh Penguins', 18387);
+
+-- Inserting records for Sponsors Table
+INSERT INTO Sponsors (SponsorID, SponsorName, TeamID, FinancialCommitment, Contact) VALUES
+(1, 'Tech Corp', 1, 10000000, 'Larry Robins'),
+(2, 'Superfoods', 2, 2000000, 'Justin McGrath'),
+(3, 'MegaCorp', 3, 7000000, 'Janet Semply'),
+(4, 'PowerFuel', 4, 3500000, 'Amanda James'),
+(5, 'CleanEnergy Inc.', 1, 5000000, 'Nathan Carter'),
+(6, 'HealthPlus', 2, 4200000, 'Olivia Stone'),
+(7, 'Velocity Motors', 3, 6000000, 'Ryan Gibson'),
+(8, 'Cloud Dynamics', 4, 8000000, 'Sarah White'),
+(9, 'Vision Optics', 1, 1200000, 'Jason Cooper'),
+(10, 'FastTrack Freight', 3, 2800000, 'Emily Watson');
+
+-- Inserting records for TeamDetails Table
+INSERT INTO Teams (TeamID, TeamName, ArenaID, Mascot, Record) VALUES
+(1, 'Maple Leafs', 'A001', 'Maple Monty', '45-25-12'),
+(2, 'Bruins', 'A002', 'Big B', '50-20-12'),
+(3, 'Lightning', 'A003', 'Louis', '55-18-9'),
+(4, 'Calgary Flames', 'A004', 'Harvey the Hound', '47-27-8'),
+(5, 'Colorado Avalanche', 'A005', 'Bernie the St. Bernard', '50-24-8'),
+(6, 'Chicago Blackhawks', 'A006', 'Tommy Hawk', '42-30-10'),
+(7, 'Edmonton Oilers', 'A007', 'Hunter', '46-29-7'),
+(8, 'Detroit Red Wings', 'A008', 'Hooper', '44-31-7'),
+(9, 'Seattle Kraken', 'A009', 'Buoy', '35-35-12'),
+(10, 'Pittsburgh Penguins', 'A010', 'Iceburgh', '48-26-8');
