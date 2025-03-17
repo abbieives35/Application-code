@@ -1,0 +1,9 @@
+SELECT 
+    c.CoachID, 
+    c.Name,  -- Correct column name from Coaches table
+    c.Role, 
+    c.TeamID, 
+    t.TeamName,          -- Correctly referring to TeamName from Teams table
+    c.HireDate
+FROM Coaches c
+JOIN Teams t ON c.TeamID = t.TeamID;  -- Join Coaches' TeamID with Teams' TeamID
