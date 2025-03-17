@@ -1,0 +1,20 @@
+import string
+
+def create_dictionary(input_file):
+    word_dict = {}
+    with open(input_file, 'r', encoding = 'utf-8') as file:
+        for line in file:
+                
+            words = line.translate(str.maketrans('', '', string.punctuation)).lower().split()
+            for word in words:
+                word_dict[word] = word_dict.get(word, 0) + 1
+
+    print(f'{word_dict}')
+                
+
+def main():
+    input_file = r"\\ISCFS01\RedirectedFolders\aives\Downloads\txtfile.txt"  
+    create_dictionary(input_file)
+
+if __name__ == "__main__":
+    main()
