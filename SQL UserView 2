@@ -1,0 +1,12 @@
+-- This query will generate the data for User View 2: Game Schedule View
+-- Corrected query for Game Schedule View
+SELECT 
+    gs.GameID, 
+    gs.Date, 
+    at.TeamName AS AwayTeamName, 
+    gs.ArenaID,          -- ArenaID from GameSchedule
+    ht.TeamName AS HomeTeamName, 
+    gs.WinningTeam
+FROM GameSchedule gs
+JOIN Teams ht ON gs.HomeTeamName = ht.TeamName  -- Join HomeTeamName to TeamName for HomeTeam
+JOIN Teams at ON gs.AwayTeamName = at.TeamName  -- Join AwayTeamName to TeamName for AwayTeam
