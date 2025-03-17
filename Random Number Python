@@ -1,0 +1,16 @@
+import random
+
+def generate_rand():
+    lotto_list = []
+    for _ in range (0,7):
+        lotto_number = random.randint(0, 9)
+        lotto_list.append(lotto_number)
+    print(f'Lottery Numbers:{lotto_list}')
+
+def main():
+    generate_rand()
+
+if __name__ == "__main__":
+    main()
+
+    
