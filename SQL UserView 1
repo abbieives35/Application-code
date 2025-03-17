@@ -1,0 +1,3 @@
+SELECT p.PlayerID, p.Name, p.Position, t.TeamName
+FROM Players p
+JOIN Teams t ON p.TeamID = t.TeamID;
